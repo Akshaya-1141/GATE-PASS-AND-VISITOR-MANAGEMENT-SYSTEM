@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +33,8 @@
             min-height: 100vh;
         }
 
-        /* HEADER */
         .main-header {
-            background-color: var(--primary);
+            background: var(--primary);
             color: white;
             padding: 1rem 2rem;
             display: flex;
@@ -48,24 +46,16 @@
         .header-brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
         }
 
         .header-icon {
-            background-color: var(--accent);
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
         }
 
         .header-title h1 {
             font-size: 1.25rem;
             font-weight: 700;
-            line-height: 1.2;
         }
 
         .header-title p {
@@ -76,62 +66,62 @@
         .header-user {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 16px;
         }
 
         .user-badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.4rem 0.8rem;
+            background: #334155;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            color: #cbd5e1;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .logout-btn {
-            background-color: var(--danger);
+            background: var(--danger);
             color: white;
-            text-decoration: none;
-            padding: 0.4rem 0.9rem;
+            border: none;
+            padding: 6px 14px;
             border-radius: 6px;
             font-size: 0.8rem;
             font-weight: 600;
-            transition: background 0.2s;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
         .logout-btn:hover {
-            background-color: #dc2626;
+            opacity: 0.9;
         }
 
-        /* CONTAINER & TABS */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
         .tabs {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 8px;
             border-bottom: 2px solid var(--border-color);
-            overflow-x: auto;
+            margin-bottom: 1.5rem;
         }
 
         .tab-btn {
             background: none;
             border: none;
-            padding: 0.75rem 1.25rem;
+            padding: 10px 20px;
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-light);
             cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s;
-            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s ease;
         }
 
         .tab-btn:hover {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .tab-btn.active {
@@ -147,12 +137,11 @@
             display: block;
         }
 
-        /* CARDS & STATS */
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
@@ -165,67 +154,63 @@
         }
 
         .stat-card h3 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 0.85rem;
             color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
         }
 
         .stat-card p {
             font-size: 2rem;
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 1.5rem;
             border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
         }
 
-        /* TABLES */
         .table-container {
-            width: 100%;
             overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
             font-size: 0.9rem;
+            text-align: left;
         }
 
         th {
-            background: #f1f5f9;
+            background: #f8fafc;
             color: var(--text-light);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            padding: 0.75rem 1rem;
+            font-weight: 600;
+            padding: 12px 16px;
             border-bottom: 1px solid var(--border-color);
         }
 
         td {
-            padding: 0.85rem 1rem;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
         }
 
         tr:hover {
-            background-color: #f8fafc;
+            background: #fdfdfe;
         }
 
-        /* BADGES */
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.6rem;
-            border-radius: 20px;
+            padding: 4px 8px;
+            border-radius: 6px;
             font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .badge-green { background: #dcfce7; color: #15803d; }
@@ -233,88 +218,51 @@
         .badge-blue { background: #dbeafe; color: #1d4ed8; }
         .badge-yellow { background: #fef3c7; color: #b45309; }
 
-        /* FORMS & INPUTS */
-        .row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-light);
-            margin-bottom: 0.35rem;
-        }
-
-        input, select {
+        .form-control {
             width: 100%;
-            padding: 0.6rem 0.8rem;
+            padding: 8px 12px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 0.9rem;
-            outline: none;
-            transition: border 0.2s;
+            margin-bottom: 1rem;
         }
 
-        input:focus, select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-
-        .action-btn {
+        .btn {
             background: var(--accent);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 10px 18px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 0.5rem;
+            transition: 0.2s;
         }
 
-        .action-btn:hover {
-            background: var(--accent-hover);
-        }
+        .btn:hover { background: var(--accent-hover); }
 
-        .action-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* PAGINATION CONTROLS */
         .pagination-controls {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
-            padding-top: 1rem;
+            gap: 12px;
             margin-top: 1rem;
-            border-top: 1px solid var(--border-color);
         }
 
         .page-btn {
-            background: var(--bg-color);
+            background: white;
             border: 1px solid var(--border-color);
-            padding: 0.4rem 1rem;
-            cursor: pointer;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            cursor: pointer;
             font-weight: 600;
         }
 
-        .page-btn:hover:not(:disabled) {
-            background: #e2e8f0;
-        }
-
         .page-btn:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
-        /* MODALS */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -323,60 +271,27 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow-y: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
             background-color: white;
             margin: 5% auto;
-            padding: 25px;
+            padding: 24px;
             border-radius: 12px;
             width: 90%;
             max-width: 900px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
         }
 
         .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
+            float: right;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            color: #aaa;
-        }
-
-        .close-modal:hover {
-            color: #000;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent);
-        }
-
-        .profile-stats {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-top: 5px;
+            color: var(--text-light);
         }
     </style>
 </head>
@@ -393,7 +308,7 @@
         </div>
         <div class="header-user">
             <span class="user-badge">👤 {{ session.get('name', 'Admin') }}</span>
-            <a href="/" class="logout-btn">Logout</a>
+            <a href="/logout" class="logout-btn">Logout</a>
         </div>
     </header>
 
@@ -405,7 +320,7 @@
             <button class="tab-btn" onclick="showTab('active_visitors')">🟢 Active Visitors</button>
             <button class="tab-btn" onclick="showTab('history')">📜 Visitor History</button>
             <button class="tab-btn" onclick="showTab('appointment')">📅 New Booking</button>
-            <button class="tab-btn" onclick="showTab('database')">📂 Database</button>
+            <button class="tab-btn" onclick="showTab('database')">📂 Database Search</button>
         </div>
 
         <!-- 1. OVERVIEW TAB -->
@@ -419,28 +334,25 @@
                     <h3>Today's Entries</h3>
                     <p style="color: #3b82f6;">{{ today_count }}</p>
                 </div>
-                <div class="stat-card" style="border-top-color: var(--warning);">
-                    <h3>Pending Bookings</h3>
-                    <p style="color: var(--warning);">{{ bookings|length }}</p>
-                </div>
                 <div class="stat-card" style="border-top-color: var(--accent);">
-                    <h3>Total All-Time</h3>
-                    <p style="color: var(--accent);">{{ total_entries }}</p>
+                    <h3>Total Lifetime Visitors</h3>
+                    <p>{{ total_entries }}</p>
+                </div>
+                <div class="stat-card" style="border-top-color: var(--warning);">
+                    <h3>Pending Appointments</h3>
+                    <p style="color: var(--warning);">{{ bookings|length }}</p>
                 </div>
             </div>
 
             <div class="card">
-                <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom:1rem;">
-                    <h3 style="margin:0;">Recent Activity Log</h3>
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <span style="font-size:0.85rem; color: var(--text-light);">Rows:</span>
-                        <select id="rowsPerPage" onchange="changeRowsPerPage()" style="padding:4px 8px; width:auto;">
-                            <option value="20">20 Rows</option>
-                            <option value="50">50 Rows</option>
-                            <option value="100">100 Rows</option>
-                            <option value="all">All Rows</option>
-                        </select>
-                    </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
+                    <h2 style="margin:0; font-size: 1.15rem;">Recent Campus Activity Log</h2>
+                    <select id="rowsPerPage" onchange="changeRowsPerPage()" style="padding:6px; border-radius:6px; border:1px solid var(--border-color); font-size:0.85rem;">
+                        <option value="20">Show 20</option>
+                        <option value="50">Show 50</option>
+                        <option value="100">Show 100</option>
+                        <option value="all">Show All</option>
+                    </select>
                 </div>
 
                 <div class="table-container">
@@ -470,12 +382,11 @@
         <!-- 2. ACTIVE VISITORS TAB -->
         <div id="active_visitors" class="tab-content">
             <div class="card">
-                <h2 style="margin-top:0; color:var(--success); margin-bottom: 1rem;">On-Campus Visitors</h2>
+                <h2 style="margin-top:0; color:var(--success); margin-bottom: 1rem;">Currently On-Campus Visitors</h2>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Pass No</th>
                                 <th>In Time</th>
                                 <th>Visitor Details</th>
                                 <th>Meeting Host</th>
@@ -485,10 +396,12 @@
                         <tbody>
                             {% for row in active_visitors %}
                             <tr>
-                                <td style="font-weight:700;">#{{ row[row|length - 1] }}</td>
                                 <td style="font-weight:600;">{{ row[1] }}</td>
-                                <td>{{ row[3] }}<br><span style="font-size:0.85rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] or '-' }}</span></td>
-                                <td>{{ row[7] }} <span class="badge badge-blue">{{ row[8] }}</span></td>
+                                <td>
+                                    <strong>{{ row[3] }}</strong><br>
+                                    <span style="font-size:0.85rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] }}</span>
+                                </td>
+                                <td>{{ row[7] }} ({{ row[8] }})</td>
                                 <td>
                                     {% if row[9] %}
                                         <a href="{{ row[9] }}" target="_blank" class="badge badge-yellow" style="text-decoration:none;">View Photo</a>
@@ -497,7 +410,7 @@
                             </tr>
                             {% else %}
                             <tr>
-                                <td colspan="5" style="text-align:center; padding:2rem; color: var(--text-light);">No visitors currently on campus.</td>
+                                <td colspan="4" style="text-align:center; padding:2rem; color: var(--text-light);">No visitors currently on campus.</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -505,177 +418,147 @@
                 </div>
             </div>
         </div>
+    <!-- 3. CHECKED-OUT VISITORS TAB -->
+    <div>
+        <div>
+        <h2>Checked-Out Visitor History</h2>
+        <p>Showing only guests who have completed their visit and left campus.</p>
+        <div>
+            {% set ns = namespace(found=false) %}
+            {% for row in visitors %}
+                {% if row[10] and row[10]|trim != "" %}
+                    {% set ns.found = true %}
+                {% endif %}
+            {% endfor %}
 
-        <!-- 3. VISITOR HISTORY TAB (CHECKED OUT VISITORS ONLY) -->
-        <div id="history" class="tab-content">
-            <div class="card">
-                <h2 style="margin-top:0; color:var(--primary); margin-bottom: 1rem;">📜 Checked-Out Visitor History</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Pass No</th>
-                                <th>Date & In-Time</th>
-                                <th>Visitor Name & Mobile</th>
-                                <th>Host / Dept</th>
-                                <th>Out Time</th>
-                                <th>Photo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for row in completed_visitors %}
-                            <tr>
-                                <td style="font-weight:700;">#{{ row[row|length - 1] }}</td>
-                                <td>{{ row[0] }} <span style="font-size:0.8rem; color:var(--text-light); display:block;">{{ row[1] }}</span></td>
-                                <td><strong>{{ row[3] }}</strong><br><span style="font-size:0.8rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] or '-' }}</span></td>
-                                <td>{{ row[7] }} <span class="badge badge-blue">{{ row[8] }}</span></td>
-                                <td><span class="badge badge-red">OUT: {{ row[10] }}</span></td>
-                                <td>
-                                    {% if row[9] %}
-                                        <a href="{{ row[9] }}" target="_blank" class="badge badge-yellow" style="text-decoration:none;">View Photo</a>
-                                    {% else %} - {% endif %}
-                                </td>
-                            </tr>
-                            {% else %}
-                            <tr>
-                                <td colspan="6" style="text-align:center; padding:2rem; color: var(--text-light);">No completed visitor visits logged yet.</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pass No</th>
+                        <th>Date &amp; In-Time</th>
+                        <th>Checked Out At</th>
+                        <th>Visitor Details</th>
+                        <th>Host &amp; Dept</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if ns.found %}
+                        {% for row in visitors %}
+                            {% if row[10] and row[10]|trim != "" %}
+                                <tr>
+                                    <td><strong>#{{ row[row|length - 1] }}</strong></td>
+                                    <td>
+                                        {{ row[0] }}<br />
+                                        <span style="font-size:0.8rem; color:var(--text-light);">In: {{ row[1] }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-red" style="font-weight:700;">OUT: {{ row[10] }}</span>
+                                    </td>
+                                    <td>
+                                        <strong>{{ row[3] }}</strong> ({{ row[2] }})<br />
+                                        <span style="font-size:0.8rem; color:var(--text-light);">{{ row[5] if row[5] and row[5] != '-' else 'Visitor' }}</span>
+                                    </td>
+                                    <td>{{ row[7] }} <span class="badge badge-blue">{{ row[8] }}</span></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding:2rem; color: var(--text-light);">
+                                No checked-out visitors yet. All active visitors are currently on campus.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
         </div>
-
+    </div>
+</div>
         <!-- 4. APPOINTMENT TAB -->
         <div id="appointment" class="tab-content">
             <div class="card" style="max-width:800px; margin:0 auto;">
-                <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.5rem;">Schedule Appointment</h2>
-
-                <form id="adminBookingForm">
-                    <div style="background:#f8fafc; padding:1.5rem; border-radius:12px; margin-bottom:1.5rem; border: 1px solid var(--border-color);">
-                        <h4 style="margin:0 0 1rem 0; color:var(--accent);">1. Visitor Information</h4>
-                        <div class="row">
-                            <div>
-                                <label>Mobile Number *</label>
-                                <input type="tel" id="v_mobile" placeholder="10-digit mobile number" onblur="checkVisitor()" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);" maxlength="10" required>
-                            </div>
-                            <div>
-                                <label>Full Name *</label>
-                                <input type="text" id="v_name" placeholder="Visitor Name" required>
-                            </div>
+                <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.5rem;">Schedule Visitor Appointment</h2>
+                <form id="adminBookingForm" onsubmit="handleAdminBooking(event)">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Visitor Name *</label>
+                            <input type="text" id="b_name" required class="form-control" placeholder="Guest Full Name">
                         </div>
-                        <div id="status-msg" style="margin-top:0.5rem; font-size:0.85rem; font-weight:600;"></div>
-
-                        <div class="row" style="margin-top:1rem;">
-                            <div>
-                                <label>Organization / Company</label>
-                                <input type="text" id="v_company" placeholder="Company / Institution">
-                            </div>
-                            <div>
-                                <label>Vehicle Number</label>
-                                <input type="text" id="v_vehicle" placeholder="Optional">
-                            </div>
-                            <div>
-                                <label>Purpose</label>
-                                <select id="v_purpose">
-                                    <option value="Official Visit">Official Visit</option>
-                                    <option value="Meeting">Meeting</option>
-                                    <option value="Inspection">Inspection</option>
-                                    <option value="Guest Lecture">Guest Lecture</option>
-                                    <option value="Personal">Personal</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Mobile Number *</label>
+                            <input type="text" id="b_mobile" required maxlength="10" class="form-control" placeholder="10-digit Mobile">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Purpose of Visit *</label>
+                            <input type="text" id="b_purpose" required class="form-control" placeholder="Meeting Purpose">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Host Faculty/Staff *</label>
+                            <input type="text" id="b_to_meet" required class="form-control" placeholder="Staff Name">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Department *</label>
+                            <input type="text" id="b_department" required class="form-control" placeholder="Department">
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:600;">Company / Institution</label>
+                            <input type="text" id="b_company" class="form-control" placeholder="Optional">
                         </div>
                     </div>
-
-                    <div style="background:#f8fafc; padding:1.5rem; border-radius:12px; border: 1px solid var(--border-color);">
-                        <h4 style="margin:0 0 1rem 0; color:var(--accent);">2. Meeting Details</h4>
-                        <div class="row">
-                            <div>
-                                <label>Host Name</label>
-                                <input type="text" id="host_name" value="{{ session.get('name', 'Admin') }}">
-                            </div>
-                            <div>
-                                <label>Department</label>
-                                <input type="text" id="host_dept" value="{{ session.get('dept', 'ADMIN') }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="action-btn" onclick="submitAdminBooking()" style="width: 100%; margin-top: 1.5rem;">✅ Confirm Appointment</button>
-                    <p id="msg" style="text-align:center; margin-top:1rem; font-weight:600;"></p>
+                    <button type="submit" class="btn" style="width:100%; margin-top:1rem;">Pre-Book Appointment</button>
                 </form>
             </div>
         </div>
 
-        <!-- 5. DATABASE & REPORTS TAB -->
+        <!-- 5. DATABASE SEARCH & FILTER TAB -->
         <div id="database" class="tab-content">
             <div class="card">
-                <h3 style="margin-top:0; color:var(--primary);">🔍 Search Visitor History</h3>
-                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
-                    Find all previous visits and statistics for a specific person.
-                </p>
-                <div style="display:flex; gap:10px;">
-                    <input type="text" id="search_mobile" placeholder="Enter 10-digit mobile number" style="flex:2;" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" maxlength="10">
-                    <button class="action-btn" onclick="searchVisitorByMobile()" style="margin-top:0; flex:1; background:var(--accent);">🔎 Search</button>
+                <h2 style="margin-top:0; margin-bottom: 1rem;">🔍 Search Visitor By Mobile</h2>
+                <div style="display:flex; gap:10px; max-width:500px; margin-bottom:1.5rem;">
+                    <input type="text" id="searchMobile" maxlength="10" placeholder="Enter 10-digit Mobile" class="form-control" style="margin-bottom:0;">
+                    <button class="btn" onclick="searchVisitorRecord()">Search</button>
                 </div>
             </div>
 
             <div class="card">
-                <h3 style="margin-top:0; color:var(--primary);">📅 Export Visitor Reports</h3>
-                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
-                    Select a date range to filter view or download CSV.
-                </p>
-                <div class="row">
+                <h2 style="margin-top:0; margin-bottom: 1rem;">📅 Filter / Export Reports</h2>
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
                     <div>
-                        <label>From Date</label>
-                        <input type="date" id="filter_from">
+                        <label style="font-size:0.8rem; font-weight:600;">From Date:</label>
+                        <input type="date" id="filterFrom" class="form-control" style="margin-bottom:0;">
                     </div>
                     <div>
-                        <label>To Date</label>
-                        <input type="date" id="filter_to">
+                        <label style="font-size:0.8rem; font-weight:600;">To Date:</label>
+                        <input type="date" id="filterTo" class="form-control" style="margin-bottom:0;">
                     </div>
+                    <button class="btn" style="margin-top:18px;" onclick="applyDateFilter()">Filter Records</button>
+                    <button class="btn" style="margin-top:18px; background:#059669;" onclick="downloadCsvReport()">Export CSV</button>
                 </div>
-                <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
-                    <button class="action-btn" onclick="getFilteredData()" style="margin-top:0; flex: 1;">🔍 Filter View (Popup)</button>
-                    <button class="action-btn" onclick="downloadExcel()" style="margin-top:0; background: var(--success); flex: 1;">📥 Download CSV Report</button>
-                </div>
-            </div>
-
-            <div class="card" style="text-align:center; max-width:500px; margin:0 auto;">
-                <h3 style="margin-top:0;">Database & Cloud Resources</h3>
-                <p style="color:var(--text-light); margin-bottom:2rem; font-size: 0.9rem;">Direct access to system resources.</p>
-
-                <a href="https://docs.google.com/spreadsheets/d/{{ sheet_id }}" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#10b981; margin-bottom:1rem;">📊 Google Sheets Logs</a>
-                <a href="https://drive.google.com/drive/u/0/folders/{{ drive_id }}" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#3b82f6; margin-bottom:1rem;">📁 Drive Photos</a>
-                <a href="https://console.firebase.google.com/" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#f59e0b;">🔥 Firebase Users</a>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 1: VISITOR HISTORY POPUP -->
+    <!-- MODAL 1: VISITOR PROFILE & HISTORY SEARCH -->
     <div id="visitorModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('visitorModal')">&times;</span>
-
-            <div class="profile-header">
-                <img id="v-profile-img" src="" class="profile-img" onerror="this.style.display='none'">
-                <div class="profile-info" style="text-align: left;">
-                    <h2 id="v-profile-name">Visitor Name</h2>
-                    <p id="v-profile-meta" style="color:var(--text-light); margin:5px 0;">Designation • Company</p>
-                    <span class="profile-stats">Total Visits: <strong id="v-profile-count">0</strong></span>
+            <div style="display:flex; gap:20px; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:15px;">
+                <img id="v-profile-img" src="" alt="Visitor Photo" style="width:70px; height:70px; border-radius:50%; object-fit:cover; display:none; border:2px solid var(--border-color);">
+                <div>
+                    <h2 id="v-profile-name" style="margin:0;">Visitor Details</h2>
+                    <p id="v-profile-meta" style="color:var(--text-light); font-size:0.85rem; margin-top:4px;"></p>
+                    <span class="badge badge-blue">Total Visits: <span id="v-profile-count">0</span></span>
                 </div>
             </div>
 
-            <h3 style="text-align:left; margin-bottom:10px;">Visit History</h3>
-            <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+            <h3>Past Campus Visits</h3>
+            <div class="table-container" style="margin-top:10px;">
                 <table id="visitor-history-table">
                     <thead>
                         <tr>
+                            <th>Pass No</th>
                             <th>Date</th>
-                            <th>Time</th>
+                            <th>In Time</th>
                             <th>Host</th>
                             <th>Department</th>
                             <th>Status</th>
@@ -692,7 +575,6 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('filterModal')">&times;</span>
             <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:15px;">Filtered Visitor Data</h2>
-
             <div class="table-container" style="max-height: 500px; overflow-y: auto;">
                 <table id="filter-table">
                     <thead>
@@ -713,7 +595,7 @@
 
     <!-- SCRIPTS -->
     <script>
-        const allVisitors = JSON.parse('{{ visitors | tojson | safe }}');
+        const allVisitors = JSON.parse('{{ (visitors | default([])) | tojson | safe }}');
 
         let currentPage = 1;
         let rowsPerPage = 20;
@@ -739,7 +621,7 @@
 
             pageData.forEach(row => {
                 const passID = row[row.length - 1];
-                const statusBadge = (row[10] && row[10].trim() !== '') ?
+                const statusBadge = (row[10] && row[10].trim() !== "") ?
                     `<span class="badge badge-red">OUT: ${row[10]}</span>` :
                     '<span class="badge badge-green">INSIDE</span>';
 
@@ -790,10 +672,10 @@
         }
 
         function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(d => d.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
+            document.getElementById(id).classList.add('active');
             const btns = document.querySelectorAll('.tab-btn');
             if (id === 'overview') btns[0].classList.add('active');
             if (id === 'active_visitors') btns[1].classList.add('active');
@@ -802,20 +684,16 @@
             if (id === 'database') btns[4].classList.add('active');
         }
 
-        async function searchVisitorByMobile() {
-            const mobileInput = document.getElementById('search_mobile');
-            const mobile = mobileInput.value;
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
 
-            if (!mobile || mobile.length !== 10) {
-                alert("Please enter a valid 10-digit mobile number");
-                mobileInput.focus();
+        async function searchVisitorRecord() {
+            const mobile = document.getElementById('searchMobile').value.trim();
+            if (mobile.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number.");
                 return;
             }
-
-            const btn = document.querySelector('button[onclick="searchVisitorByMobile()"]');
-            const originalText = btn.innerText;
-            btn.innerText = "⏳ Searching...";
-            btn.disabled = true;
 
             try {
                 const res = await fetch(`/api/admin/search_visitor?mobile=${mobile}`);
@@ -823,199 +701,138 @@
 
                 if (data.status === 'success') {
                     if (!data.found) {
-                        alert("No records found for this mobile number.");
-                    } else {
-                        document.getElementById('v-profile-name').innerText = data.details.name || "Unknown";
-                        document.getElementById('v-profile-meta').innerText = `${data.details.designation || '-'} • ${data.details.company || '-'}`;
-                        document.getElementById('v-profile-count').innerText = data.visit_count;
-
-                        const img = document.getElementById('v-profile-img');
-                        if (data.details.photo) {
-                            img.src = data.details.photo;
-                            img.style.display = 'block';
-                        } else {
-                            img.style.display = 'none';
-                        }
-
-                        const tbody = document.querySelector('#visitor-history-table tbody');
-                        tbody.innerHTML = "";
-
-                        data.history.forEach(row => {
-                            const date = row[0] || "-";
-                            const time = row[1] || "-";
-                            const host = row[7] || "-";
-                            const dept = row[8] || "-";
-                            const outTime = row[10] ? `<span class="badge badge-red">OUT: ${row[10]}</span>` : '<span class="badge badge-green">INSIDE</span>';
-
-                            tbody.innerHTML += `
-                                <tr>
-                                    <td>${date}</td>
-                                    <td>${time}</td>
-                                    <td>${host}</td>
-                                    <td>${dept}</td>
-                                    <td>${outTime}</td>
-                                </tr>
-                            `;
-                        });
-
-                        document.getElementById('visitorModal').style.display = 'block';
+                        alert("No visitor records found for this mobile number.");
+                        return;
                     }
-                } else {
-                    alert("Error: " + data.message);
-                }
-            } catch (e) {
-                console.error(e);
-                alert("Network Error");
-            } finally {
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }
-        }
 
-        async function getFilteredData() {
-            const from = document.getElementById('filter_from').value;
-            const to = document.getElementById('filter_to').value;
+                    document.getElementById('v-profile-name').innerText = data.details.name || "Unknown";
+                    document.getElementById('v-profile-meta').innerText = `${data.details.designation || '-'} • ${data.details.company || '-'}`;
+                    document.getElementById('v-profile-count').innerText = data.visit_count;
 
-            if (!from || !to) { alert("Please select both dates."); return; }
+                    const img = document.getElementById('v-profile-img');
+                    if (data.details.photo) {
+                        img.src = data.details.photo;
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'none';
+                    }
 
-            const btn = document.querySelector('button[onclick="getFilteredData()"]');
-            const originalText = btn.innerText;
-            btn.innerText = "⏳ Loading...";
-            btn.disabled = true;
-
-            try {
-                const res = await fetch('/api/admin/filter_data', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ from, to })
-                });
-                const result = await res.json();
-
-                if (result.status === 'success') {
-                    const tbody = document.querySelector('#filter-table tbody');
+                    const tbody = document.querySelector('#visitor-history-table tbody');
                     tbody.innerHTML = "";
 
-                    if (result.data.length === 0) {
-                        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; padding: 20px;'>No records found for this range.</td></tr>";
-                    } else {
-                        result.data.reverse().forEach((row) => {
-                            const passID = row[row.length - 1];
-                            tbody.innerHTML += `
+                    data.history.forEach(row => {
+                        const passID = row[row.length - 1];
+                        const date = row[0] || "-";
+                        const time = row[1] || "-";
+                        const host = row[7] || "-";
+                        const dept = row[8] || "-";
+                        const outTime = (row[10] && row[10].trim() !== "") ?
+                            `<span class="badge badge-red">OUT: ${row[10]}</span>` :
+                            '<span class="badge badge-green">INSIDE</span>';
+
+                        tbody.innerHTML += `
                             <tr>
                                 <td><strong>#${passID}</strong></td>
-                                <td>${row[0]} <span style="font-size:0.8rem; color:var(--text-light); display:block;">${row[1]}</span></td>
-                                <td><strong>${row[3]}</strong><br><span style="font-size:0.8rem;">${row[5] || '-'}</span></td>
-                                <td>${row[7]}</td>
-                                <td><span class="badge badge-blue">${row[8]}</span></td>
-                                <td>${row[10] ? `<span class="badge badge-red">OUT: ${row[10]}</span>` : '<span class="badge badge-green">INSIDE</span>'}</td>
-                            </tr>`;
-                        });
-                    }
+                                <td>${date}</td>
+                                <td>${time}</td>
+                                <td>${host}</td>
+                                <td>${dept}</td>
+                                <td>${outTime}</td>
+                            </tr>
+                        `;
+                    });
 
-                    document.getElementById('filterModal').style.display = 'block';
-
-                } else {
-                    alert("Error: " + result.message);
+                    document.getElementById('visitorModal').style.display = 'block';
                 }
-            } catch (e) {
-                console.error(e);
-                alert("Network Error");
-            } finally {
-                btn.innerText = originalText;
-                btn.disabled = false;
+            } catch (err) {
+                alert("Error searching visitor record.");
             }
         }
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-            }
-        }
-
-        function downloadExcel() {
-            const from = document.getElementById('filter_from').value;
-            const to = document.getElementById('filter_to').value;
-            if (!from || !to) { alert("Please select both dates."); return; }
-            window.location.href = `/api/admin/download_report?from=${from}&to=${to}`;
-        }
-
-        async function checkVisitor() {
-            const mobile = document.getElementById('v_mobile').value;
-            const msg = document.getElementById('status-msg');
-            if (mobile.length !== 10) { msg.innerText = ""; return; }
-
-            msg.innerText = "Checking...";
-            msg.style.color = "var(--text-light)";
-
-            try {
-                const res = await fetch(`/api/check_visitor?mobile=${mobile}`);
-                const data = await res.json();
-                if (data.found) {
-                    document.getElementById('v_name').value = data.name || "";
-                    document.getElementById('v_company').value = data.company || "";
-                    msg.innerHTML = "ℹ️ Found in Database. Auto-filled.";
-                    msg.style.color = "var(--accent)";
-                } else {
-                    msg.innerHTML = "✨ New Visitor";
-                    msg.style.color = "var(--success)";
-                }
-            } catch (e) { console.error(e); }
-        }
-
-        async function submitAdminBooking() {
-            const btn = document.querySelector('#adminBookingForm button');
-            const msg = document.getElementById('msg');
-            btn.innerText = "Processing...";
-            btn.disabled = true;
-
-            const data = {
-                name: document.getElementById('v_name').value,
-                mobile: document.getElementById('v_mobile').value,
-                company: document.getElementById('v_company').value,
-                purpose: document.getElementById('v_purpose').value,
-                to_meet: document.getElementById('host_name').value,
-                department: document.getElementById('host_dept').value
-            };
-
-            if (!data.name || !data.mobile) {
-                alert("Please fill name and mobile");
-                btn.innerText = "✅ Confirm Appointment";
-                btn.disabled = false;
+        async function applyDateFilter() {
+            const from = document.getElementById('filterFrom').value;
+            const to = document.getElementById('filterTo').value;
+            if (!from || !to) {
+                alert("Please select both From and To dates.");
                 return;
             }
 
             try {
-                const res = await fetch('/api/book_visitor', {
+                const res = await fetch('/api/admin/filter_data', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ from, to })
                 });
                 const result = await res.json();
-
                 if (result.status === 'success') {
-                    msg.innerText = "Success! Appointment Created.";
-                    msg.style.color = "var(--success)";
-                    document.getElementById('adminBookingForm').reset();
-                    setTimeout(() => location.reload(), 1500);
-                } else {
-                    msg.innerText = "Error: " + result.message;
-                    msg.style.color = "var(--danger)";
-                    btn.innerText = "✅ Confirm Appointment";
-                    btn.disabled = false;
+                    const tbody = document.querySelector('#filter-table tbody');
+                    tbody.innerHTML = "";
+
+                    result.data.forEach(row => {
+                        const passID = row[row.length - 1];
+                        const outBadge = (row[10] && row[10].trim() !== "") ?
+                            `<span class="badge badge-red">OUT: ${row[10]}</span>` :
+                            '<span class="badge badge-green">INSIDE</span>';
+
+                        tbody.innerHTML += `
+                            <tr>
+                                <td><strong>#${passID}</strong></td>
+                                <td>${row[0]} <span style="font-size:0.8rem; color:var(--text-light);">${row[1]}</span></td>
+                                <td>${row[3]}</td>
+                                <td>${row[7]}</td>
+                                <td>${row[8]}</td>
+                                <td>${outBadge}</td>
+                            </tr>
+                        `;
+                    });
+                    document.getElementById('filterModal').style.display = 'block';
                 }
-            } catch (e) {
-                console.error(e);
-                msg.innerText = "Network Error";
-                btn.disabled = false;
+            } catch(e) {
+                alert("Error filtering data.");
             }
         }
 
+        function downloadCsvReport() {
+            const from = document.getElementById('filterFrom').value;
+            const to = document.getElementById('filterTo').value;
+            if (!from || !to) {
+                alert("Please select both From and To dates to export.");
+                return;
+            }
+            window.location.href = `/api/admin/download_report?from=${from}&to=${to}`;
+        }
+
+        async function handleAdminBooking(e) {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('b_name').value.trim(),
+                mobile: document.getElementById('b_mobile').value.trim(),
+                purpose: document.getElementById('b_purpose').value.trim(),
+                to_meet: document.getElementById('b_to_meet').value.trim(),
+                department: document.getElementById('b_department').value.trim(),
+                company: document.getElementById('b_company').value.trim()
+            };
+
+            try {
+                const res = await fetch('/api/book_visitor', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert("✅ Appointment successfully pre-booked!");
+                    document.getElementById('adminBookingForm').reset();
+                } else {
+                    alert("❌ " + (data.message || "Failed to book appointment"));
+                }
+            } catch(err) {
+                alert("Network error booking appointment.");
+            }
+        }
+
+        // Initialize overview table
         renderTable();
     </script>
 </body>
-
 </html>

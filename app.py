@@ -17,7 +17,20 @@ from drive_manager import upload_photo_to_drive
 load_dotenv() 
 
 app = Flask(__name__)
-
+@app.after_request
+def set_security_headers(response):
+    csp = (
+        "default-src 'self' https: data: blob:; "
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://www.gstatic.com https://apis.google.com; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com data:; "
+        "frame-src 'self' https://*.firebaseapp.com https://accounts.google.com; "
+        "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; "
+        "img-src 'self' data: blob: https:; "
+    )
+    response.headers['Content-Security-Policy'] = csp
+    return response
+    
 # [SECURE] Load Configuration
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_dev_key")
 SHEET_ID = os.getenv("GOOGLE_SHEET_ID")

@@ -128,7 +128,7 @@ def dashboard():
     if not ws_visitors: connect_to_db()
 
     if role == 'Security': 
-        return render_template('security_dashboard.html')
+        return render_template('security_dashboard.html', visitors=[])
     elif role == 'Faculty': 
         return render_template('faculty_dashboard.html')
     elif role == 'Admin':

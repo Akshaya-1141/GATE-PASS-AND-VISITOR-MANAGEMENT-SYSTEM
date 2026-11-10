@@ -11,15 +11,15 @@ from io import StringIO
 from flask import Flask, render_template, request, jsonify, session, redirect, Response
 import gspread
 from google.oauth2.credentials import Credentials 
-from drive_manager import upload_photo_to_drive 
+from drive_manager import upload_photo_to_drive
 
 # Load environment variables
-load_dotenv() 
+load_dotenv()
 
 app = Flask(__name__)
 
 # [SECURE] Load Configuration
-app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_dev_key")
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "srit_gatepass_secure_secret_key_2026")
 SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 DRIVE_FOLDER_ID = os.getenv("GOOGLE_DRIVE_FOLDER_ID")
 SHEET_NAME = os.getenv("GOOGLE_SHEET_NAME", "Visitor_Database")
@@ -57,10 +57,10 @@ def connect_to_db():
             ws_users = sh.worksheet("Users")
             ws_visitors = sh.worksheet("Visitors")
             ws_bookings = sh.worksheet("Bookings")
-            print("✅ Connected to Google Database.")
+            print("✅ Successfully connected to Google Database.")
             return True
         else:
-            print("❌ No credentials found.")
+            print("❌ No Google API credentials found.")
             return False
     except Exception as e:
         print(f"❌ Connection Error: {e}")
@@ -68,13 +68,12 @@ def connect_to_db():
 
 connect_to_db()
 
-# --- ROUTES ---
+# --- AUTH & ROUTING ---
 
 @app.route('/')
 def index():
-    # Clear previous session so old roles don't persist across logins
+    # Clear session so previous roles do not persist across logins
     session.clear()
-    
     firebase_config = {
         'apiKey': os.getenv('FIREBASE_API_KEY'),
         'authDomain': os.getenv('FIREBASE_AUTH_DOMAIN'),
@@ -113,63 +112,74 @@ def api_login():
         else:
             dept = 'ADMIN' if role == 'Admin' else ('SECURITY' if role == 'Security' else 'STAFF')
 
+        session.clear()
         session['user'] = email
         session['role'] = role
         session['name'] = name or (row_vals[2] if len(row_vals) > 2 and row_vals[2].strip() else email.split('@')[0])
         session['dept'] = dept
 
+        print(f"✅ Logged in: {email} | Role: {role}")
         return jsonify({'status': 'success', 'redirect': '/dashboard'})
     except Exception as e:
-        print(f"Login lookup failed: {e}") 
-
-    return jsonify({'status': 'error', 'message': 'Access Denied: User not registered in database.'})
+        print(f"❌ Login lookup failed for {email}: {e}") 
+        return jsonify({'status': 'error', 'message': 'Access Denied: User not registered in database.'})
 
 @app.route('/dashboard')
 def dashboard():
     if 'user' not in session: 
         return redirect('/')
     
-    role = session.get('role', 'Faculty')
+    role = str(session.get('role', '')).capitalize()
     if not ws_visitors: 
         connect_to_db()
 
-    # Route based on role
+    # 1. SECURITY DESK
     if role == 'Security': 
-        # Must pass visitors=[] to satisfy {{ visitors | tojson }} in security_dashboard.html
-        return render_template('security_dashboard.html', visitors=[])
+        visitors_data = []
+        try:
+            v_rows = ws_visitors.get_all_values()
+            # Row index 0 is header. First data row (index 1) gets pass ID = 1
+            for index, row in enumerate(v_rows[1:], start=1):
+                row.append(index)
+            visitors_data = v_rows[1:]
+            visitors_data.reverse()
+        except Exception as e:
+            print(f"Security Visitors Load Error: {e}")
+        return render_template('security_dashboard.html', visitors=visitors_data)
 
+    # 2. FACULTY PORTAL
     elif role == 'Faculty': 
         return render_template('faculty_dashboard.html')
 
+    # 3. ADMIN CONSOLE
     elif role == 'Admin':
         visitors_data = []
         active_visitors = []
         upcoming_bookings = []
         past_bookings = []
-        
         total_entries_count = 0
         today_entries_count = 0
         
         try:
             v_rows = ws_visitors.get_all_values()
-            
-            # Add Pass ID (Row Index) to each row
-            for index, row in enumerate(v_rows):
-                row.append(index + 1)
+            # Pass ID: Row index 0 is header. First visitor (index 1) gets Pass ID = 1
+            for index, row in enumerate(v_rows[1:], start=1):
+                row.append(index)
             
             # FULL DATA (Skip Header)
             visitors_data = v_rows[1:] 
-            visitors_data.reverse() # Newest first
+            visitors_data.reverse()  # Newest first
             total_entries_count = len(visitors_data)
             
+            # Calculate Today's Count: Column A (Index 0) is Date
             today_str = datetime.now(IST).strftime("%d-%m-%Y")
             today_entries_count = sum(1 for row in visitors_data if len(row) > 0 and row[0] == today_str)
 
-            # Active Visitors Logic
+            # Active Visitors: Column K (Index 10) is Out Time
             active_visitors = [row for row in v_rows[1:] if len(row) > 10 and row[10] == ""]
             active_visitors.reverse()
 
-            # Bookings Logic
+            # Bookings Logic: Column H (Index 7) is Status
             b_rows = ws_bookings.get_all_values()
             for row in b_rows[1:]:
                 if len(row) > 7:
@@ -193,7 +203,9 @@ def dashboard():
                              sheet_id=SHEET_ID, 
                              drive_id=DRIVE_FOLDER_ID)
     
-    return "Unknown Role"
+    return redirect('/logout')
+
+# --- VISITOR MANAGEMENT APIS ---
 
 @app.route('/api/book_visitor', methods=['POST'])
 def book_visitor():
@@ -310,6 +322,34 @@ def get_active_visitors():
     except Exception: 
         return jsonify([])
 
+@app.route('/api/get_completed_visitors', methods=['GET'])
+def get_completed_visitors():
+    if session.get('role') != 'Security': 
+        return jsonify([])
+    try:
+        if not ws_visitors: 
+            connect_to_db()
+        all_rows = ws_visitors.get_all_values()
+        completed_list = []
+        # Loop backwards from newest to oldest
+        for row in reversed(all_rows[1:]):
+            # Check if Out Time (Index 10) is logged and not empty
+            if len(row) > 10 and row[10] and str(row[10]).strip() != "":
+                completed_list.append({
+                    'date': row[0] if len(row) > 0 else "-",
+                    'in_time': row[1] if len(row) > 1 else "-",
+                    'mobile': row[2] if len(row) > 2 else "-",
+                    'name': row[3] if len(row) > 3 else "-",
+                    'to_meet': row[7] if len(row) > 7 else "-",
+                    'dept': row[8] if len(row) > 8 else "-",
+                    'out_time': row[10] if len(row) > 10 else "-",
+                    'vehicle': row[12] if len(row) > 12 else "-"
+                })
+        return jsonify(completed_list[:30])
+    except Exception as e:
+        print(f"Error fetching completed visitors: {e}")
+        return jsonify([])
+
 @app.route('/api/check_visitor', methods=['GET'])
 def check_visitor():
     mobile = request.args.get('mobile')
@@ -360,8 +400,10 @@ def get_next_id():
     try:
         if not ws_visitors: 
             connect_to_db()
-        current_count = len(ws_visitors.col_values(1)) 
-        return jsonify({'next_id': current_count})
+        # Row 1 is header. If sheet has 1 row (header only), next ID is 1
+        total_rows = len(ws_visitors.col_values(1))
+        next_id = max(1, total_rows)
+        return jsonify({'next_id': next_id})
     except Exception: 
         return jsonify({'next_id': '---'})
 
@@ -384,13 +426,13 @@ def entry():
 
         try:
             if not DRIVE_FOLDER_ID: 
-                raise Exception("GOOGLE_DRIVE_FOLDER_ID not set in environment")
+                raise Exception("GOOGLE_DRIVE_FOLDER_ID not set")
             drive_link = upload_photo_to_drive(image_bytes, filename, DRIVE_FOLDER_ID)
             if drive_link: 
                 photo_url = drive_link
         except Exception as e:
-            print(f"⚠️ Drive Failed: {e}")
-            return jsonify({'status': 'error', 'message': 'Photo Upload Failed.'})
+            print(f"⚠️ Photo Upload Failed: {e}")
+            return jsonify({'status': 'error', 'message': 'Photo Upload to Google Drive Failed.'})
 
         new_row = [
             now.strftime("%d-%m-%Y"),
@@ -409,6 +451,10 @@ def entry():
         ]
         ws_visitors.append_row(new_row)
         
+        # Calculate accurate pass ID without header offset
+        all_vals = ws_visitors.get_all_values()
+        pass_id = max(1, len(all_vals) - 1)
+        
         try:
             cell_list = ws_bookings.findall(data.get('mobile'))
             for cell in cell_list:
@@ -419,7 +465,7 @@ def entry():
 
         return jsonify({
             'status': 'success', 
-            'pass_id': len(ws_visitors.get_all_values()), 
+            'pass_id': pass_id, 
             'date': new_row[0], 
             'in_time': new_row[1], 
             'photo': photo_url
@@ -446,10 +492,7 @@ def exit_visitor():
             
             if row_mobile == mobile:
                 target_row_index = i + 1 
-                if len(row) > 10: 
-                    target_out_time = row[10]
-                else: 
-                    target_out_time = "" 
+                target_out_time = row[10] if len(row) > 10 else ""
                 break 
         
         if target_row_index == -1:
@@ -468,13 +511,13 @@ def exit_visitor():
             ws_visitors.update_cell(target_row_index, 11, out_time)
             return jsonify({'status': 'success', 'out_time': out_time})
         else:
-            return jsonify({'status': 'error', 'message': f'Already OUT (Time: {target_out_time})'})
+            return jsonify({'status': 'error', 'message': f'Already marked OUT at {target_out_time}'})
 
     except Exception as e:
         print(f"Exit Error: {e}")
         return jsonify({'status': 'error', 'message': str(e)})
 
-# --- ADMIN ROUTES ---
+# --- ADMIN FILTER & EXPORT APIS ---
 
 @app.route('/api/admin/filter_data', methods=['POST'])
 def filter_data():
@@ -496,31 +539,32 @@ def filter_data():
         headers = all_rows[0]
         filtered_rows = []
 
-        for row in all_rows[1:]:
-            if not row or not row[0]: 
-                continue
+        for idx, row in enumerate(all_rows[1:]):
             try:
+                sheet_row_number = idx + 2
                 row_date = datetime.strptime(row[0], "%d-%m-%Y").date()
                 if start_date <= row_date <= end_date:
+                    row.append(sheet_row_number)
                     filtered_rows.append(row)
-            except Exception:
+            except (ValueError, IndexError):
                 continue
 
-        return jsonify({'status': 'success', 'headers': headers, 'rows': filtered_rows})
+        return jsonify({
+            'status': 'success', 
+            'headers': headers, 
+            'data': filtered_rows
+        })
     except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)})
+        print(f"Filter Error: {e}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
-@app.route('/api/admin/export_csv', methods=['POST'])
-def export_csv():
+@app.route('/api/admin/download_report', methods=['GET'])
+def download_report():
     if session.get('role') != 'Admin': 
-        return jsonify({'error': 'Unauthorized'}), 403
+        return "Unauthorized", 403
     
-    data = request.json or {}
-    start_str = data.get('from')
-    end_str = data.get('to')
-
-    if not ws_visitors: 
-        connect_to_db()
+    start_str = request.args.get('from')
+    end_str = request.args.get('to')
 
     try:
         start_date = datetime.strptime(start_str, "%Y-%m-%d").date()
@@ -529,11 +573,9 @@ def export_csv():
         all_rows = ws_visitors.get_all_values()
         si = StringIO()
         cw = csv.writer(si)
-        cw.writerow(all_rows[0])
+        cw.writerow(all_rows[0])  # Header
 
         for row in all_rows[1:]:
-            if not row or not row[0]: 
-                continue
             try:
                 row_date = datetime.strptime(row[0], "%d-%m-%Y").date()
                 if start_date <= row_date <= end_date:
@@ -542,13 +584,65 @@ def export_csv():
                 continue
 
         output = si.getvalue()
+        filename = f"VISITOR_REPORT_{start_str}_{end_str}.csv"
         return Response(
             output,
             mimetype="text/csv",
-            headers={"Content-disposition": f"attachment; filename=visitor_report_{start_str}_to_{end_str}.csv"}
+            headers={"Content-disposition": f"attachment; filename={filename}"}
         )
     except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)})
+        return str(e), 500
+
+@app.route('/api/admin/search_visitor', methods=['GET'])
+def search_visitor():
+    if session.get('role') != 'Admin': 
+        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 403
+    
+    mobile = request.args.get('mobile', '').strip()
+    if not mobile: 
+        return jsonify({'status': 'error', 'message': 'Mobile number required'})
+
+    if not ws_visitors: 
+        connect_to_db()
+
+    try:
+        all_rows = ws_visitors.get_all_values()
+        visitor_history = []
+        visitor_details = {}
+        visit_count = 0
+        
+        clean_search_mobile = ''.join(filter(str.isdigit, mobile))
+
+        for idx, row in enumerate(all_rows[1:]):
+            if len(row) > 2:
+                sheet_mobile = str(row[2]).strip()
+                clean_sheet_mobile = ''.join(filter(str.isdigit, sheet_mobile))
+                
+                if clean_sheet_mobile == clean_search_mobile:
+                    visit_count += 1
+                    visitor_details = {
+                        'name': row[3] if len(row) > 3 else "-",
+                        'company': row[5] if len(row) > 5 else "-",
+                        'designation': row[4] if len(row) > 4 else "-",
+                        'photo': row[9] if len(row) > 9 else ""
+                    }
+                    row_copy = list(row)
+                    row_copy.append(idx + 1)  # Exact Pass ID matches sequential order
+                    visitor_history.append(row_copy)
+
+        if visit_count == 0:
+            return jsonify({'status': 'success', 'found': False})
+
+        return jsonify({
+            'status': 'success',
+            'found': True,
+            'details': visitor_details,
+            'visit_count': visit_count,
+            'history': list(reversed(visitor_history))
+        })
+    except Exception as e:
+        print(f"Search Error: {e}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.getenv('PORT', 5000)))

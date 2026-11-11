@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,8 +34,9 @@
             min-height: 100vh;
         }
 
+        /* HEADER */
         .main-header {
-            background: var(--primary);
+            background-color: var(--primary);
             color: white;
             padding: 1rem 2rem;
             display: flex;
@@ -46,16 +48,24 @@
         .header-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0.75rem;
         }
 
         .header-icon {
-            font-size: 1.8rem;
+            background-color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .header-title h1 {
             font-size: 1.25rem;
             font-weight: 700;
+            line-height: 1.2;
         }
 
         .header-title p {
@@ -66,62 +76,62 @@
         .header-user {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .user-badge {
-            background: #334155;
-            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            color: #cbd5e1;
         }
 
         .logout-btn {
-            background: var(--danger);
+            background-color: var(--danger);
             color: white;
-            border: none;
-            padding: 6px 14px;
+            text-decoration: none;
+            padding: 0.4rem 0.9rem;
             border-radius: 6px;
             font-size: 0.8rem;
             font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.2s;
+            transition: background 0.2s;
         }
 
         .logout-btn:hover {
-            opacity: 0.9;
+            background-color: #dc2626;
         }
 
+        /* CONTAINER & TABS */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
         .tabs {
             display: flex;
-            gap: 8px;
-            border-bottom: 2px solid var(--border-color);
+            gap: 0.5rem;
             margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            overflow-x: auto;
         }
 
         .tab-btn {
             background: none;
             border: none;
-            padding: 10px 20px;
+            padding: 0.75rem 1.25rem;
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-light);
             cursor: pointer;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .tab-btn:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .tab-btn.active {
@@ -137,11 +147,12 @@
             display: block;
         }
 
+        /* CARDS & STATS */
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-card {
@@ -154,63 +165,67 @@
         }
 
         .stat-card h3 {
-            font-size: 0.85rem;
-            color: var(--text-light);
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
             margin-bottom: 0.5rem;
         }
 
         .stat-card p {
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-weight: 800;
         }
 
         .card {
             background: var(--card-bg);
             border-radius: 12px;
-            border: 1px solid var(--border-color);
             padding: 1.5rem;
-            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
         }
 
+        /* TABLES */
         .table-container {
+            width: 100%;
             overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
             text-align: left;
+            font-size: 0.9rem;
         }
 
         th {
-            background: #f8fafc;
+            background: #f1f5f9;
             color: var(--text-light);
-            font-weight: 600;
-            padding: 12px 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         td {
-            padding: 14px 16px;
+            padding: 0.85rem 1rem;
             border-bottom: 1px solid var(--border-color);
-            vertical-align: middle;
         }
 
         tr:hover {
-            background: #fdfdfe;
+            background-color: #f8fafc;
         }
 
+        /* BADGES */
         .badge {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .badge-green { background: #dcfce7; color: #15803d; }
@@ -218,51 +233,88 @@
         .badge-blue { background: #dbeafe; color: #1d4ed8; }
         .badge-yellow { background: #fef3c7; color: #b45309; }
 
-        .form-control {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.9rem;
+        /* FORMS & INPUTS */
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
             margin-bottom: 1rem;
         }
 
-        .btn {
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.35rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .action-btn {
             background: var(--accent);
             color: white;
             border: none;
-            padding: 10px 18px;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
         }
 
-        .btn:hover { background: var(--accent-hover); }
-
-        .pagination-controls {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 12px;
-            margin-top: 1rem;
+        .action-btn:hover {
+            background: var(--accent-hover);
         }
 
-        .page-btn {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .page-btn:disabled {
-            opacity: 0.4;
+        .action-btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
-        /* Modal Styles */
+        /* PAGINATION CONTROLS */
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .page-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: #e2e8f0;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* MODALS */
         .modal {
             display: none;
             position: fixed;
@@ -271,27 +323,60 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
         }
 
         .modal-content {
             background-color: white;
             margin: 5% auto;
-            padding: 24px;
+            padding: 25px;
             border-radius: 12px;
             width: 90%;
             max-width: 900px;
-            max-height: 85vh;
-            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         .close-modal {
-            float: right;
-            font-size: 24px;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
             font-weight: bold;
             cursor: pointer;
-            color: var(--text-light);
+            color: #aaa;
+        }
+
+        .close-modal:hover {
+            color: #000;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+        }
+
+        .profile-stats {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -308,7 +393,7 @@
         </div>
         <div class="header-user">
             <span class="user-badge">👤 {{ session.get('name', 'Admin') }}</span>
-            <a href="/logout" class="logout-btn">Logout</a>
+            <a href="/" class="logout-btn">Logout</a>
         </div>
     </header>
 
@@ -317,10 +402,10 @@
         <!-- NAVIGATION TABS -->
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('overview')">📊 Overview</button>
-            <button class="tab-btn" onclick="showTab('active_visitors')">🟢 Active Visitors</button>
-            <button class="tab-btn" onclick="showTab('history')">📜 Visitor History</button>
+            <button class="tab-btn" onclick="showTab('active_visitors')">🟢 Active Visitors ({{ active_visitors|length }})</button>
+            <button class="tab-btn" onclick="showTab('history')">📜 Visitor History ({{ past_visitors|length }})</button>
             <button class="tab-btn" onclick="showTab('appointment')">📅 New Booking</button>
-            <button class="tab-btn" onclick="showTab('database')">📂 Database Search</button>
+            <button class="tab-btn" onclick="showTab('database')">📂 Database & Reports</button>
         </div>
 
         <!-- 1. OVERVIEW TAB -->
@@ -334,47 +419,73 @@
                     <h3>Today's Entries</h3>
                     <p style="color: #3b82f6;">{{ today_count }}</p>
                 </div>
-                <div class="stat-card" style="border-top-color: var(--accent);">
-                    <h3>Total Lifetime Visitors</h3>
-                    <p>{{ total_entries }}</p>
-                </div>
                 <div class="stat-card" style="border-top-color: var(--warning);">
-                    <h3>Pending Appointments</h3>
+                    <h3>Pending Bookings</h3>
                     <p style="color: var(--warning);">{{ bookings|length }}</p>
+                </div>
+                <div class="stat-card" style="border-top-color: var(--accent);">
+                    <h3>Total All-Time</h3>
+                    <p style="color: var(--accent);">{{ total_entries }}</p>
                 </div>
             </div>
 
+            <!-- Active Visitors Summary Card -->
             <div class="card">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
-                    <h2 style="margin:0; font-size: 1.15rem;">Recent Campus Activity Log</h2>
-                    <select id="rowsPerPage" onchange="changeRowsPerPage()" style="padding:6px; border-radius:6px; border:1px solid var(--border-color); font-size:0.85rem;">
-                        <option value="20">Show 20</option>
-                        <option value="50">Show 50</option>
-                        <option value="100">Show 100</option>
-                        <option value="all">Show All</option>
-                    </select>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem;">
+                    <div>
+                        <h3 style="margin:0; color:var(--success);">🟢 Live On-Campus Visitors</h3>
+                        <p style="margin:4px 0 0 0; font-size:0.85rem; color:var(--text-light);">Visitors currently inside campus. Logged-out visitors are strictly stored in Visitor History.</p>
+                    </div>
+                    <button class="action-btn" onclick="showTab('active_visitors')" style="margin:0; padding:6px 12px; font-size:0.85rem; background:var(--success);">
+                        View Active Grid ({{ active_visitors|length }})
+                    </button>
                 </div>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Pass No</th>
-                                <th>Time</th>
-                                <th>Visitor</th>
-                                <th>Host</th>
-                                <th>Department</th>
+                                <th>Pass ID</th>
+                                <th>In Time</th>
+                                <th>Visitor Details</th>
+                                <th>Host & Department</th>
+                                <th>Vehicle</th>
+                                <th>Photo</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody id="overview-table-body"></tbody>
+                        <tbody>
+                            {% for row in active_visitors %}
+                            <tr>
+                                <td><strong>#{{ row[13] }}</strong></td>
+                                <td style="font-weight:600;">{{ row[1] }}</td>
+                                <td><strong>{{ row[3] }}</strong><br><span style="font-size:0.8rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] or '-' }}</span></td>
+                                <td>{{ row[7] }} <span class="badge badge-blue">{{ row[8] }}</span></td>
+                                <td>{{ row[12] or '-' }}</td>
+                                <td>
+                                    {% if row[9] %}
+                                        <a href="{{ row[9] }}" target="_blank" class="badge badge-yellow" style="text-decoration:none;">View Photo</a>
+                                    {% else %} - {% endif %}
+                                </td>
+                                <td><span class="badge badge-green">INSIDE</span></td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="7" style="text-align:center; padding:2rem; color: var(--text-light);">No active visitors currently on campus. All previous visitors have logged out.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 </div>
 
-                <div class="pagination-controls" id="pagination-footer">
-                    <button class="page-btn" onclick="prevPage()" id="btnPrev">Previous</button>
-                    <span id="pageInfo" style="font-size:0.85rem; font-weight:600;">Page 1</span>
-                    <button class="page-btn" onclick="nextPage()" id="btnNext">Next</button>
+                <div style="margin-top: 1.25rem; padding: 1rem 1.25rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <strong style="color: var(--primary);">Looking for completed / past visits?</strong>
+                        <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: var(--text-light);">There are <strong>{{ past_visitors|length }}</strong> checked-out visitor records in the archive.</p>
+                    </div>
+                    <button class="action-btn" onclick="showTab('history')" style="margin: 0; padding: 8px 16px; font-size: 0.85rem; background: var(--primary);">
+                        📜 Open Visitor History &rarr;
+                    </button>
                 </div>
             </div>
         </div>
@@ -382,14 +493,14 @@
         <!-- 2. ACTIVE VISITORS TAB -->
         <div id="active_visitors" class="tab-content">
             <div class="card">
-                <h2 style="margin-top:0; color:var(--success); margin-bottom: 1rem;">Currently On-Campus Visitors</h2>
+                <h2 style="margin-top:0; color:var(--success); margin-bottom: 1rem;">On-Campus Visitors</h2>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
                                 <th>In Time</th>
                                 <th>Visitor Details</th>
-                                <th>Meeting Host</th>
+                                <th>Meeting</th>
                                 <th>Photo</th>
                             </tr>
                         </thead>
@@ -397,10 +508,7 @@
                             {% for row in active_visitors %}
                             <tr>
                                 <td style="font-weight:600;">{{ row[1] }}</td>
-                                <td>
-                                    <strong>{{ row[3] }}</strong><br>
-                                    <span style="font-size:0.85rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] }}</span>
-                                </td>
+                                <td>{{ row[3] }}<br><span style="font-size:0.85rem; color:var(--text-light);">{{ row[2] }} • {{ row[5] }}</span></td>
                                 <td>{{ row[7] }} ({{ row[8] }})</td>
                                 <td>
                                     {% if row[9] %}
@@ -418,147 +526,220 @@
                 </div>
             </div>
         </div>
-    <!-- 3. CHECKED-OUT VISITORS TAB -->
-    <div>
-        <div>
-        <h2>Checked-Out Visitor History</h2>
-        <p>Showing only guests who have completed their visit and left campus.</p>
-        <div>
-            {% set ns = namespace(found=false) %}
-            {% for row in visitors %}
-                {% if row[10] and row[10]|trim != "" %}
-                    {% set ns.found = true %}
-                {% endif %}
-            {% endfor %}
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pass No</th>
-                        <th>Date &amp; In-Time</th>
-                        <th>Checked Out At</th>
-                        <th>Visitor Details</th>
-                        <th>Host &amp; Dept</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if ns.found %}
-                        {% for row in visitors %}
-                            {% if row[10] and row[10]|trim != "" %}
-                                <tr>
-                                    <td><strong>#{{ row[row|length - 1] }}</strong></td>
-                                    <td>
-                                        {{ row[0] }}<br />
-                                        <span style="font-size:0.8rem; color:var(--text-light);">In: {{ row[1] }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-red" style="font-weight:700;">OUT: {{ row[10] }}</span>
-                                    </td>
-                                    <td>
-                                        <strong>{{ row[3] }}</strong> ({{ row[2] }})<br />
-                                        <span style="font-size:0.8rem; color:var(--text-light);">{{ row[5] if row[5] and row[5] != '-' else 'Visitor' }}</span>
-                                    </td>
-                                    <td>{{ row[7] }} <span class="badge badge-blue">{{ row[8] }}</span></td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="5" style="text-align:center; padding:2rem; color: var(--text-light);">
-                                No checked-out visitors yet. All active visitors are currently on campus.
-                            </td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-            </table>
+        <!-- 3. VISITOR HISTORY TAB (STRICTLY LOGGED OUT VISITORS) -->
+        <div id="history" class="tab-content">
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                    <div>
+                        <h2 style="margin:0; color:var(--primary);">📜 Visitor History (Logged Out Visitors)</h2>
+                        <p style="margin:4px 0 0 0; font-size:0.85rem; color:var(--text-light);">Archived log of all visitors who have completed their visits and checked out.</p>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="font-size:0.85rem; color: var(--text-light);">Rows:</span>
+                        <select id="rowsPerPage" onchange="changeRowsPerPage()" style="padding:4px 8px; width:auto;">
+                            <option value="20">20 Rows</option>
+                            <option value="50">50 Rows</option>
+                            <option value="100">100 Rows</option>
+                            <option value="all">All Rows</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" id="historySearch" placeholder="🔍 Search past visitors by name, mobile, host, company, or pass ID..." onkeyup="filterPastVisitors()" style="width:100%; padding:9px 14px; border:1px solid var(--border-color); border-radius:8px;">
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pass No</th>
+                                <th>Date</th>
+                                <th>In / Out Time</th>
+                                <th>Visitor Details</th>
+                                <th>Host & Department</th>
+                                <th>Vehicle</th>
+                                <th>Photo</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-controls" id="pagination-footer">
+                    <button class="page-btn" onclick="prevPage()" id="btnPrev">Previous</button>
+                    <span id="pageInfo" style="font-size:0.85rem; font-weight:600;">Page 1</span>
+                    <button class="page-btn" onclick="nextPage()" id="btnNext">Next</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
         <!-- 4. APPOINTMENT TAB -->
         <div id="appointment" class="tab-content">
             <div class="card" style="max-width:800px; margin:0 auto;">
-                <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.5rem;">Schedule Visitor Appointment</h2>
-                <form id="adminBookingForm" onsubmit="handleAdminBooking(event)">
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Visitor Name *</label>
-                            <input type="text" id="b_name" required class="form-control" placeholder="Guest Full Name">
+                <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.5rem;">Schedule Appointment</h2>
+
+                <form id="adminBookingForm">
+                    <div style="background:#f8fafc; padding:1.5rem; border-radius:12px; margin-bottom:1.5rem; border: 1px solid var(--border-color);">
+                        <h4 style="margin:0 0 1rem 0; color:var(--accent);">1. Visitor Information</h4>
+                        <div class="row">
+                            <div>
+                                <label>Mobile Number *</label>
+                                <input type="number" id="v_mobile" placeholder="Search by mobile..." onblur="checkVisitor()" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);" maxlength="10" required>
+                            </div>
+                            <div>
+                                <label>Full Name *</label>
+                                <input type="text" id="v_name" placeholder="Visitor Name" required>
+                            </div>
                         </div>
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Mobile Number *</label>
-                            <input type="text" id="b_mobile" required maxlength="10" class="form-control" placeholder="10-digit Mobile">
-                        </div>
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Purpose of Visit *</label>
-                            <input type="text" id="b_purpose" required class="form-control" placeholder="Meeting Purpose">
-                        </div>
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Host Faculty/Staff *</label>
-                            <input type="text" id="b_to_meet" required class="form-control" placeholder="Staff Name">
-                        </div>
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Department *</label>
-                            <input type="text" id="b_department" required class="form-control" placeholder="Department">
-                        </div>
-                        <div>
-                            <label style="font-size:0.8rem; font-weight:600;">Company / Institution</label>
-                            <input type="text" id="b_company" class="form-control" placeholder="Optional">
+                        <div id="status-msg" style="margin-top:0.5rem; font-size:0.85rem; font-weight:600;"></div>
+
+                        <div class="row" style="margin-top:1rem;">
+                            <div>
+                                <label>Organization / Company</label>
+                                <input type="text" id="v_company" placeholder="Company / Institution">
+                            </div>
+                            <div>
+                                <label>Vehicle Number</label>
+                                <input type="text" id="v_vehicle" placeholder="Optional">
+                            </div>
+                            <div>
+                                <label>Purpose</label>
+                                <select id="v_purpose">
+                                    <option value="Official Visit">Official Visit</option>
+                                    <option value="Meeting">Meeting</option>
+                                    <option value="Inspection">Inspection</option>
+                                    <option value="Guest Lecture">Guest Lecture</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn" style="width:100%; margin-top:1rem;">Pre-Book Appointment</button>
+
+                    <div style="background:#f8fafc; padding:1.5rem; border-radius:12px; border: 1px solid var(--border-color);">
+                        <h4 style="margin:0 0 1rem 0; color:var(--accent);">2. Meeting Details</h4>
+                        <div class="row">
+                            <div>
+                                <label>Host Name</label>
+                                <input type="text" id="host_name" value="{{ session.get('name', 'Admin') }}">
+                            </div>
+                            <div>
+                                <label>Department</label>
+                                <input type="text" id="host_dept" value="{{ session.get('dept', 'ADMIN') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="action-btn" onclick="submitAdminBooking()" style="width: 100%; margin-top: 1.5rem;">✅ Confirm Appointment</button>
+                    <p id="msg" style="text-align:center; margin-top:1rem; font-weight:600;"></p>
                 </form>
             </div>
         </div>
 
-        <!-- 5. DATABASE SEARCH & FILTER TAB -->
+        <!-- 5. DATABASE & REPORTS TAB -->
         <div id="database" class="tab-content">
             <div class="card">
-                <h2 style="margin-top:0; margin-bottom: 1rem;">🔍 Search Visitor By Mobile</h2>
-                <div style="display:flex; gap:10px; max-width:500px; margin-bottom:1.5rem;">
-                    <input type="text" id="searchMobile" maxlength="10" placeholder="Enter 10-digit Mobile" class="form-control" style="margin-bottom:0;">
-                    <button class="btn" onclick="searchVisitorRecord()">Search</button>
+                <h3 style="margin-top:0; color:var(--primary);">🔍 Search Visitor History</h3>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                    Find all previous visits and statistics for a specific person.
+                </p>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="search_mobile" placeholder="Enter 10-digit mobile number" style="flex:2;" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" maxlength="10">
+                    <button class="action-btn" onclick="searchVisitorByMobile()" style="margin-top:0; flex:1; background:var(--accent);">🔎 Search</button>
                 </div>
             </div>
 
             <div class="card">
-                <h2 style="margin-top:0; margin-bottom: 1rem;">📅 Filter / Export Reports</h2>
-                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <h3 style="margin-top:0; color:var(--primary);">📅 Export Visitor Reports</h3>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                    Select a date range to filter view or download CSV.
+                </p>
+                <div class="row">
                     <div>
-                        <label style="font-size:0.8rem; font-weight:600;">From Date:</label>
-                        <input type="date" id="filterFrom" class="form-control" style="margin-bottom:0;">
+                        <label>From Date</label>
+                        <input type="date" id="filter_from">
                     </div>
                     <div>
-                        <label style="font-size:0.8rem; font-weight:600;">To Date:</label>
-                        <input type="date" id="filterTo" class="form-control" style="margin-bottom:0;">
+                        <label>To Date</label>
+                        <input type="date" id="filter_to">
                     </div>
-                    <button class="btn" style="margin-top:18px;" onclick="applyDateFilter()">Filter Records</button>
-                    <button class="btn" style="margin-top:18px; background:#059669;" onclick="downloadCsvReport()">Export CSV</button>
                 </div>
+                <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+                    <button class="action-btn" onclick="getFilteredData()" style="margin-top:0; flex: 1;">🔍 Filter View (Popup)</button>
+                    <button class="action-btn" onclick="downloadExcel()" style="margin-top:0; background: var(--success); flex: 1;">📥 Download CSV Report</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-top:0; color:var(--primary);">📋 Past Faculty Appointments</h3>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">History of pre-scheduled visitor bookings created by faculty.</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Visitor</th>
+                                <th>Host</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in past_bookings %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[5] }}</td>
+                                <td>{{ row[2] }}</td>
+                                <td><span class="badge badge-blue">{{ row[3] }}</span></td>
+                                <td>
+                                    <span class="badge badge-{{ 'green' if row[7] == 'Arrived' else 'red' }}">{{ row[7] }}</span>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" style="text-align:center; padding:1.5rem; color: var(--text-light);">No past bookings found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card" style="text-align:center; max-width:500px; margin:0 auto;">
+                <h3 style="margin-top:0;">Database & Cloud Resources</h3>
+                <p style="color:var(--text-light); margin-bottom:2rem; font-size: 0.9rem;">Direct access to system resources.</p>
+
+                <a href="https://docs.google.com/spreadsheets/d/{{ sheet_id }}" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#10b981; margin-bottom:1rem;">📊 Google Sheets Logs</a>
+                <a href="https://drive.google.com/drive/u/0/folders/{{ drive_id }}" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#3b82f6; margin-bottom:1rem;">📁 Drive Photos</a>
+                <a href="https://console.firebase.google.com/" target="_blank" class="action-btn" style="display:block; text-decoration:none; background:#f59e0b;">🔥 Firebase Users</a>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 1: VISITOR PROFILE & HISTORY SEARCH -->
+    <!-- MODAL 1: VISITOR HISTORY POPUP -->
     <div id="visitorModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('visitorModal')">&times;</span>
-            <div style="display:flex; gap:20px; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:15px;">
-                <img id="v-profile-img" src="" alt="Visitor Photo" style="width:70px; height:70px; border-radius:50%; object-fit:cover; display:none; border:2px solid var(--border-color);">
-                <div>
-                    <h2 id="v-profile-name" style="margin:0;">Visitor Details</h2>
-                    <p id="v-profile-meta" style="color:var(--text-light); font-size:0.85rem; margin-top:4px;"></p>
-                    <span class="badge badge-blue">Total Visits: <span id="v-profile-count">0</span></span>
+
+            <div class="profile-header">
+                <img id="v-profile-img" src="" class="profile-img" onerror="this.style.display='none'">
+                <div class="profile-info" style="text-align: left;">
+                    <h2 id="v-profile-name">Visitor Name</h2>
+                    <p id="v-profile-meta" style="color:var(--text-light); margin:5px 0;">Designation • Company</p>
+                    <span class="profile-stats">Total Visits: <strong id="v-profile-count">0</strong></span>
                 </div>
             </div>
 
-            <h3>Past Campus Visits</h3>
-            <div class="table-container" style="margin-top:10px;">
+            <h3 style="text-align:left; margin-bottom:10px;">Visit History</h3>
+            <div class="table-container" style="max-height: 400px; overflow-y: auto;">
                 <table id="visitor-history-table">
                     <thead>
                         <tr>
-                            <th>Pass No</th>
                             <th>Date</th>
-                            <th>In Time</th>
+                            <th>Time</th>
                             <th>Host</th>
                             <th>Department</th>
                             <th>Status</th>
@@ -575,6 +756,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('filterModal')">&times;</span>
             <h2 style="margin-top:0; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:15px; margin-bottom:15px;">Filtered Visitor Data</h2>
+
             <div class="table-container" style="max-height: 500px; overflow-y: auto;">
                 <table id="filter-table">
                     <thead>
@@ -595,13 +777,17 @@
 
     <!-- SCRIPTS -->
     <script>
-        const allVisitors = JSON.parse('{{ (visitors | default([])) | tojson | safe }}');
+        // Load strictly past visitors for history tab
+        const pastVisitors = JSON.parse('{{ past_visitors | tojson | safe }}');
+        let filteredVisitors = [...pastVisitors];
 
         let currentPage = 1;
         let rowsPerPage = 20;
 
+        // Render Visitor History Table
         function renderTable() {
-            const tbody = document.getElementById('overview-table-body');
+            const tbody = document.getElementById('history-table-body');
+            if (!tbody) return;
             tbody.innerHTML = "";
 
             let start = (currentPage - 1) * rowsPerPage;
@@ -609,44 +795,74 @@
 
             if (rowsPerPage === 'all') {
                 start = 0;
-                end = allVisitors.length;
+                end = filteredVisitors.length;
             }
 
-            const pageData = allVisitors.slice(start, end);
+            const pageData = filteredVisitors.slice(start, end);
 
             if (pageData.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; padding: 2rem;'>No records found.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='8' style='text-align:center; padding: 2rem; color: var(--text-light);'>No completed visitor records found.</td></tr>";
+                document.getElementById('pageInfo').innerText = "Page 0 of 0";
+                document.getElementById('btnPrev').disabled = true;
+                document.getElementById('btnNext').disabled = true;
                 return;
             }
 
             pageData.forEach(row => {
-                const passID = row[row.length - 1];
-                const statusBadge = (row[10] && row[10].trim() !== "") ?
-                    `<span class="badge badge-red">OUT: ${row[10]}</span>` :
-                    '<span class="badge badge-green">INSIDE</span>';
+                const passID = row[13] || row[row.length - 1];
+                const outTime = row[10] ? `<span class="badge badge-red">OUT: ${row[10]}</span>` : '<span class="badge badge-green">INSIDE</span>';
+                const photoLink = row[9] ? `<a href="${row[9]}" target="_blank" class="badge badge-yellow" style="text-decoration:none;">Photo</a>` : '-';
 
                 tbody.innerHTML += `
                     <tr>
                         <td><strong>#${passID}</strong></td>
-                        <td>${row[0]} <span style="font-size:0.8rem; color:var(--text-light); display:block;">${row[1]}</span></td>
-                        <td><strong>${row[3]}</strong><br><span style="font-size:0.8rem; color:var(--text-light);">${row[5] || '-'}</span></td>
-                        <td>${row[7]}</td>
-                        <td><span class="badge badge-blue">${row[8]}</span></td>
-                        <td>${statusBadge}</td>
+                        <td>${row[0]}</td>
+                        <td>
+                            <span style="font-weight:600; color:#0f172a;">${row[1]}</span>
+                            <span style="display:block; font-size:0.8rem; color:#dc2626; font-weight:600;">${row[10] ? 'Exit: ' + row[10] : ''}</span>
+                        </td>
+                        <td>
+                            <strong>${row[3]}</strong>
+                            <br><span style="font-size:0.8rem; color:var(--text-light);">${row[2]} • ${row[5] || '-'}</span>
+                        </td>
+                        <td>${row[7]} <span class="badge badge-blue">${row[8]}</span></td>
+                        <td>${row[12] || '-'}</td>
+                        <td>${photoLink}</td>
+                        <td>${outTime}</td>
                     </tr>
                 `;
             });
 
             if (rowsPerPage === 'all') {
-                document.getElementById('pageInfo').innerText = `Showing All (${allVisitors.length})`;
+                document.getElementById('pageInfo').innerText = `Showing All (${filteredVisitors.length})`;
                 document.getElementById('btnPrev').disabled = true;
                 document.getElementById('btnNext').disabled = true;
             } else {
-                const totalPages = Math.ceil(allVisitors.length / rowsPerPage) || 1;
+                const totalPages = Math.ceil(filteredVisitors.length / rowsPerPage) || 1;
                 document.getElementById('pageInfo').innerText = `Page ${currentPage} of ${totalPages}`;
-                document.getElementById('btnPrev').disabled = (currentPage === 1);
-                document.getElementById('btnNext').disabled = (currentPage === totalPages);
+                document.getElementById('btnPrev').disabled = (currentPage <= 1);
+                document.getElementById('btnNext').disabled = (currentPage >= totalPages);
             }
+        }
+
+        function filterPastVisitors() {
+            const query = (document.getElementById('historySearch')?.value || '').toLowerCase().trim();
+            if (!query) {
+                filteredVisitors = [...pastVisitors];
+            } else {
+                filteredVisitors = pastVisitors.filter(row => {
+                    const passID = String(row[13] || row[row.length - 1] || '');
+                    const date = String(row[0] || '').toLowerCase();
+                    const mobile = String(row[2] || '').toLowerCase();
+                    const name = String(row[3] || '').toLowerCase();
+                    const company = String(row[5] || '').toLowerCase();
+                    const host = String(row[7] || '').toLowerCase();
+                    const dept = String(row[8] || '').toLowerCase();
+                    return passID.includes(query) || date.includes(query) || mobile.includes(query) || name.includes(query) || company.includes(query) || host.includes(query) || dept.includes(query);
+                });
+            }
+            currentPage = 1;
+            renderTable();
         }
 
         function changeRowsPerPage() {
@@ -657,7 +873,7 @@
         }
 
         function nextPage() {
-            const totalPages = Math.ceil(allVisitors.length / rowsPerPage);
+            const totalPages = Math.ceil(filteredVisitors.length / rowsPerPage);
             if (currentPage < totalPages) {
                 currentPage++;
                 renderTable();
@@ -671,11 +887,12 @@
             }
         }
 
+        // Tab Navigation
         function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-
+            document.querySelectorAll('.tab-content').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+
             const btns = document.querySelectorAll('.tab-btn');
             if (id === 'overview') btns[0].classList.add('active');
             if (id === 'active_visitors') btns[1].classList.add('active');
@@ -684,16 +901,21 @@
             if (id === 'database') btns[4].classList.add('active');
         }
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
+        // Search Visitor History
+        async function searchVisitorByMobile() {
+            const mobileInput = document.getElementById('search_mobile');
+            const mobile = mobileInput.value;
 
-        async function searchVisitorRecord() {
-            const mobile = document.getElementById('searchMobile').value.trim();
-            if (mobile.length !== 10) {
-                alert("Please enter a valid 10-digit mobile number.");
+            if (!mobile || mobile.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number");
+                mobileInput.focus();
                 return;
             }
+
+            const btn = document.querySelector('button[onclick="searchVisitorByMobile()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "⏳ Searching...";
+            btn.disabled = true;
 
             try {
                 const res = await fetch(`/api/admin/search_visitor?mobile=${mobile}`);
@@ -701,138 +923,200 @@
 
                 if (data.status === 'success') {
                     if (!data.found) {
-                        alert("No visitor records found for this mobile number.");
-                        return;
-                    }
-
-                    document.getElementById('v-profile-name').innerText = data.details.name || "Unknown";
-                    document.getElementById('v-profile-meta').innerText = `${data.details.designation || '-'} • ${data.details.company || '-'}`;
-                    document.getElementById('v-profile-count').innerText = data.visit_count;
-
-                    const img = document.getElementById('v-profile-img');
-                    if (data.details.photo) {
-                        img.src = data.details.photo;
-                        img.style.display = 'block';
+                        alert("No records found for this mobile number.");
                     } else {
-                        img.style.display = 'none';
+                        document.getElementById('v-profile-name').innerText = data.details.name || "Unknown";
+                        document.getElementById('v-profile-meta').innerText = `${data.details.designation || '-'} • ${data.details.company || '-'}`;
+                        document.getElementById('v-profile-count').innerText = data.visit_count;
+
+                        const img = document.getElementById('v-profile-img');
+                        if (data.details.photo) {
+                            img.src = data.details.photo;
+                            img.style.display = 'block';
+                        } else {
+                            img.style.display = 'none';
+                        }
+
+                        const tbody = document.querySelector('#visitor-history-table tbody');
+                        tbody.innerHTML = "";
+
+                        data.history.forEach(row => {
+                            const date = row[0] || "-";
+                            const time = row[1] || "-";
+                            const host = row[7] || "-";
+                            const dept = row[8] || "-";
+                            const outTime = row[10] ? `<span class="badge badge-red">OUT: ${row[10]}</span>` : '<span class="badge badge-green">INSIDE</span>';
+
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td>${date}</td>
+                                    <td>${time}</td>
+                                    <td>${host}</td>
+                                    <td>${dept}</td>
+                                    <td>${outTime}</td>
+                                </tr>
+                            `;
+                        });
+
+                        document.getElementById('visitorModal').style.display = 'block';
                     }
-
-                    const tbody = document.querySelector('#visitor-history-table tbody');
-                    tbody.innerHTML = "";
-
-                    data.history.forEach(row => {
-                        const passID = row[row.length - 1];
-                        const date = row[0] || "-";
-                        const time = row[1] || "-";
-                        const host = row[7] || "-";
-                        const dept = row[8] || "-";
-                        const outTime = (row[10] && row[10].trim() !== "") ?
-                            `<span class="badge badge-red">OUT: ${row[10]}</span>` :
-                            '<span class="badge badge-green">INSIDE</span>';
-
-                        tbody.innerHTML += `
-                            <tr>
-                                <td><strong>#${passID}</strong></td>
-                                <td>${date}</td>
-                                <td>${time}</td>
-                                <td>${host}</td>
-                                <td>${dept}</td>
-                                <td>${outTime}</td>
-                            </tr>
-                        `;
-                    });
-
-                    document.getElementById('visitorModal').style.display = 'block';
+                } else {
+                    alert("Error: " + data.message);
                 }
-            } catch (err) {
-                alert("Error searching visitor record.");
+            } catch (e) {
+                console.error(e);
+                alert("Network Error");
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         }
 
-        async function applyDateFilter() {
-            const from = document.getElementById('filterFrom').value;
-            const to = document.getElementById('filterTo').value;
-            if (!from || !to) {
-                alert("Please select both From and To dates.");
-                return;
-            }
+        // Filter View Popup
+        async function getFilteredData() {
+            const from = document.getElementById('filter_from').value;
+            const to = document.getElementById('filter_to').value;
+
+            if (!from || !to) { alert("Please select both dates."); return; }
+
+            const btn = document.querySelector('button[onclick="getFilteredData()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "⏳ Loading...";
+            btn.disabled = true;
 
             try {
                 const res = await fetch('/api/admin/filter_data', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ from, to })
                 });
                 const result = await res.json();
+
                 if (result.status === 'success') {
                     const tbody = document.querySelector('#filter-table tbody');
                     tbody.innerHTML = "";
 
-                    result.data.forEach(row => {
-                        const passID = row[row.length - 1];
-                        const outBadge = (row[10] && row[10].trim() !== "") ?
-                            `<span class="badge badge-red">OUT: ${row[10]}</span>` :
-                            '<span class="badge badge-green">INSIDE</span>';
-
-                        tbody.innerHTML += `
+                    if (result.data.length === 0) {
+                        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; padding: 20px;'>No records found for this range.</td></tr>";
+                    } else {
+                        result.data.reverse().forEach((row) => {
+                            const passID = row[row.length - 1];
+                            tbody.innerHTML += `
                             <tr>
                                 <td><strong>#${passID}</strong></td>
-                                <td>${row[0]} <span style="font-size:0.8rem; color:var(--text-light);">${row[1]}</span></td>
-                                <td>${row[3]}</td>
+                                <td>${row[0]} <span style="font-size:0.8rem; color:var(--text-light); display:block;">${row[1]}</span></td>
+                                <td><strong>${row[3]}</strong><br><span style="font-size:0.8rem;">${row[5] || '-'}</span></td>
                                 <td>${row[7]}</td>
-                                <td>${row[8]}</td>
-                                <td>${outBadge}</td>
-                            </tr>
-                        `;
-                    });
+                                <td><span class="badge badge-blue">${row[8]}</span></td>
+                                <td>${row[10] ? `<span class="badge badge-red">OUT: ${row[10]}</span>` : '<span class="badge badge-green">INSIDE</span>'}</td>
+                            </tr>`;
+                        });
+                    }
+
                     document.getElementById('filterModal').style.display = 'block';
+
+                } else {
+                    alert("Error: " + result.message);
                 }
-            } catch(e) {
-                alert("Error filtering data.");
+            } catch (e) {
+                console.error(e);
+                alert("Network Error");
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         }
 
-        function downloadCsvReport() {
-            const from = document.getElementById('filterFrom').value;
-            const to = document.getElementById('filterTo').value;
-            if (!from || !to) {
-                alert("Please select both From and To dates to export.");
-                return;
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
             }
+        }
+
+        function downloadExcel() {
+            const from = document.getElementById('filter_from').value;
+            const to = document.getElementById('filter_to').value;
+            if (!from || !to) { alert("Please select both dates."); return; }
             window.location.href = `/api/admin/download_report?from=${from}&to=${to}`;
         }
 
-        async function handleAdminBooking(e) {
-            e.preventDefault();
-            const payload = {
-                name: document.getElementById('b_name').value.trim(),
-                mobile: document.getElementById('b_mobile').value.trim(),
-                purpose: document.getElementById('b_purpose').value.trim(),
-                to_meet: document.getElementById('b_to_meet').value.trim(),
-                department: document.getElementById('b_department').value.trim(),
-                company: document.getElementById('b_company').value.trim()
+        async function checkVisitor() {
+            const mobile = document.getElementById('v_mobile').value;
+            const msg = document.getElementById('status-msg');
+            if (mobile.length !== 10) { msg.innerText = ""; return; }
+
+            msg.innerText = "Checking...";
+            msg.style.color = "var(--text-light)";
+
+            try {
+                const res = await fetch(`/api/check_visitor?mobile=${mobile}`);
+                const data = await res.json();
+                if (data.found) {
+                    document.getElementById('v_name').value = data.name || "";
+                    document.getElementById('v_company').value = data.company || "";
+                    msg.innerHTML = "ℹ️ Found in Database. Auto-filled.";
+                    msg.style.color = "var(--accent)";
+                } else {
+                    msg.innerHTML = "✨ New Visitor";
+                    msg.style.color = "var(--success)";
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        async function submitAdminBooking() {
+            const btn = document.querySelector('#adminBookingForm button');
+            const msg = document.getElementById('msg');
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            const data = {
+                name: document.getElementById('v_name').value,
+                mobile: document.getElementById('v_mobile').value,
+                company: document.getElementById('v_company').value,
+                purpose: document.getElementById('v_purpose').value,
+                to_meet: document.getElementById('host_name').value,
+                department: document.getElementById('host_dept').value
             };
+
+            if (!data.name || !data.mobile) {
+                alert("Please fill name and mobile");
+                btn.innerText = "✅ Confirm Appointment";
+                btn.disabled = false;
+                return;
+            }
 
             try {
                 const res = await fetch('/api/book_visitor', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
                 });
-                const data = await res.json();
-                if (data.status === 'success') {
-                    alert("✅ Appointment successfully pre-booked!");
+                const result = await res.json();
+
+                if (result.status === 'success') {
+                    msg.innerText = "Success! Appointment Created.";
+                    msg.style.color = "var(--success)";
                     document.getElementById('adminBookingForm').reset();
+                    setTimeout(() => location.reload(), 1500);
                 } else {
-                    alert("❌ " + (data.message || "Failed to book appointment"));
+                    msg.innerText = "Error: " + result.message;
+                    msg.style.color = "var(--danger)";
+                    btn.innerText = "✅ Confirm Appointment";
+                    btn.disabled = false;
                 }
-            } catch(err) {
-                alert("Network error booking appointment.");
+            } catch (e) {
+                msg.innerText = "Network Error";
+                btn.disabled = false;
             }
         }
 
-        // Initialize overview table
+        // Initialize Table on Load
         renderTable();
     </script>
 </body>
+
 </html>

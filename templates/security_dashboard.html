@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Desk - Visitor Gate Pass System</title>
+    <title>Security Desk - Gate Pass System</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800">
-
     <!-- Header -->
     <header class="bg-slate-900 text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center font-bold text-xl shadow-inner">🛡️</div>
+                <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center font-bold text-xl shadow-inner">👮</div>
                 <div>
                     <h1 class="text-xl font-bold leading-none">Security Gate Desk</h1>
-                    <p class="text-xs text-slate-400 mt-1">Live Campus Entry, Active Visitors & Checkout Log</p>
+                    <p class="text-xs text-slate-400 mt-1">Live Visitor Entry Registration & Active Campus Monitoring</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full text-slate-300 font-medium">
-                    👮 {{ session.get('name', 'Security Officer') }} ({{ session.get('dept', 'SECURITY') }})
+                    👤 Logged in: {{ session.get('user', 'Security Officer') }}
                 </span>
-                <a href="/logout" class="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md font-semibold transition">Logout</a>
+                <a href="/" class="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md font-semibold transition">Logout</a>
             </div>
         </div>
     </header>
@@ -39,27 +38,27 @@
             <form id="entryForm" class="space-y-4" onsubmit="handleEntry(event)">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Visitor Mobile Number *</label>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Mobile Number *</label>
                         <input type="text" id="mobile" required maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onblur="checkVisitorMobile()" placeholder="10-digit mobile number" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Visitor Full Name *</label>
-                        <input type="text" id="name" required placeholder="Guest / Visitor Full Name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Visitor Name *</label>
+                        <input type="text" id="name" required placeholder="Full Name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Designation / Role</label>
-                        <input type="text" id="designation" placeholder="Guest / Parent / Contractor / Vendor" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Designation</label>
+                        <input type="text" id="designation" placeholder="Guest / Vendor / Parent / Contractor" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Company / Organization</label>
-                        <input type="text" id="company" placeholder="Optional" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                        <input type="text" id="company" placeholder="Organization or institution name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Person To Meet (Host) *</label>
-                        <input type="text" id="to_meet" required placeholder="Faculty / Staff / Officer Name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Person To Meet *</label>
+                        <input type="text" id="to_meet" required placeholder="Staff / Host Full Name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Host Department *</label>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Department *</label>
                         <input type="text" id="department" required placeholder="Department Name" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                     </div>
                     <div>
@@ -74,7 +73,7 @@
 
                 <!-- Webcam Photo Capture -->
                 <div class="border-t border-slate-100 pt-4">
-                    <label class="block text-xs font-semibold text-slate-600 mb-2">Live Photo Capture (Saved to Google Drive) *</label>
+                    <label class="block text-xs font-semibold text-slate-600 mb-2">Live Photo Capture *</label>
                     <div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-50 p-3 rounded-xl border border-slate-200">
                         <div class="relative w-48 h-36 bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center border border-slate-700">
                             <video id="webcam" autoplay playsinline class="w-full h-full object-cover"></video>
@@ -84,7 +83,7 @@
                             <button type="button" onclick="capturePhoto()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow transition">
                                 📸 Capture Photo
                             </button>
-                            <p id="photoStatus" class="text-xs text-slate-400 font-medium">Camera initializing...</p>
+                            <p id="photoStatus" class="text-xs text-slate-400 font-medium">Camera initialized</p>
                         </div>
                     </div>
                 </div>
@@ -95,7 +94,7 @@
             </form>
         </div>
 
-        <!-- Sidebar: Active Visitors, Completed Visitors & Today's Appointments -->
+        <!-- Sidebar: Active Visitors & Today's Appointments -->
         <div class="lg:col-span-5 space-y-6">
             <!-- Active Visitors List -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -107,27 +106,12 @@
                         🔄 Refresh
                     </button>
                 </div>
-                <div id="activeList" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+                <div id="activeList" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
                     <p class="text-xs text-slate-400 py-2">Loading active visitors...</p>
                 </div>
             </div>
 
-            <!-- Completed Visitors (Checked-Out Visitor History) -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-3">
-                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-1.5">
-                        <span>🏁</span> Checked-Out Visitor History
-                    </h3>
-                    <button onclick="renderCompletedVisitors()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-2.5 py-1 rounded-md transition">
-                        🔄 Refresh
-                    </button>
-                </div>
-                <div id="completedList" class="space-y-2.5 max-h-56 overflow-y-auto pr-1">
-                    <p class="text-xs text-slate-400 py-2">Loading checked-out visitors...</p>
-                </div>
-            </div>
-
-            <!-- Pre-Booked Appointments -->
+            <!-- Today's Appointments -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-3">
                     <h3 class="text-base font-bold text-slate-800 flex items-center gap-1.5">
@@ -137,8 +121,23 @@
                         🔄 Refresh
                     </button>
                 </div>
-                <div id="bookingList" class="space-y-2.5 max-h-56 overflow-y-auto pr-1">
-                    <p class="text-xs text-slate-400 py-2">Loading appointments...</p>
+                <div id="bookingList" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+                    <p class="text-xs text-slate-400 py-2">Loading pre-bookings...</p>
+                </div>
+            </div>
+
+            <!-- Checked-Out Visitor History -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-3 border-b border-slate-100 pb-3">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-1.5">
+                        <span>🚪</span> Checked-Out Visitor History
+                    </h3>
+                    <button onclick="loadPastVisitors()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-2.5 py-1 rounded-md transition">
+                        🔄 Refresh
+                    </button>
+                </div>
+                <div id="pastList" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+                    <p class="text-xs text-slate-400 py-2">Loading checked-out history...</p>
                 </div>
             </div>
         </div>
@@ -147,22 +146,15 @@
     <script>
         let capturedBase64 = "";
 
-        // Safe Jinja Default fallback
-        const allVisitors = JSON.parse('{{ (visitors | default([])) | tojson | safe }}');
-
-        // Start Webcam
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } })
-                .then(stream => { 
-                    const video = document.getElementById('webcam');
-                    video.srcObject = stream;
-                    document.getElementById('photoStatus').innerText = "Camera ready";
-                })
-                .catch(err => { 
-                    console.warn("Webcam access warning:", err); 
-                    document.getElementById('photoStatus').innerText = "⚠️ Webcam unavailable";
-                });
-        }
+        // Start Webcam Feed
+        navigator.mediaDevices?.getUserMedia({ video: { width: 640, height: 480 } })
+            .then(stream => { 
+                document.getElementById('webcam').srcObject = stream; 
+            })
+            .catch(err => { 
+                console.warn("Webcam blocked or not detected:", err); 
+                document.getElementById('photoStatus').innerText = "⚠️ Webcam unavailable (Use mobile fallback if applicable)";
+            });
 
         function capturePhoto() {
             const video = document.getElementById('webcam');
@@ -174,7 +166,7 @@
             capturedBase64 = canvas.toDataURL('image/jpeg', 0.85);
             
             const status = document.getElementById('photoStatus');
-            status.innerText = "✅ Photo Captured!";
+            status.innerText = "✅ Photo Captured Successfully!";
             status.className = "text-xs text-emerald-600 font-bold";
         }
 
@@ -209,13 +201,13 @@
         async function handleEntry(e) {
             e.preventDefault();
             if(!capturedBase64) {
-                alert("Please click '📸 Capture Photo' before issuing the pass!");
+                alert("Please capture a photo before issuing the gate pass!");
                 return;
             }
 
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
-            submitBtn.innerText = "Saving Photo to Drive & Logging...";
+            submitBtn.innerText = "Processing & Saving Entry...";
 
             const payload = {
                 mobile: document.getElementById('mobile').value.trim(),
@@ -238,20 +230,19 @@
                 const resData = await res.json();
                 
                 if(resData.status === 'success') {
-                    alert(`✅ Gate Pass #${resData.pass_id || ''} Issued!\nPhoto successfully uploaded to Drive.`);
+                    alert(`✅ Gate Pass #${resData.pass_id || ''} Issued Successfully!`);
                     document.getElementById('entryForm').reset();
                     capturedBase64 = "";
-                    document.getElementById('photoStatus').innerText = "Camera ready";
+                    document.getElementById('photoStatus').innerText = "Camera initialized";
                     document.getElementById('photoStatus').className = "text-xs text-slate-400 font-medium";
                     loadActiveVisitors();
-                    renderCompletedVisitors();
                     fetchNextId();
                 } else {
-                    alert("❌ Entry Error: " + (resData.message || "Failed to log entry"));
+                    alert("❌ Entry Error: " + (resData.message || "Could not log entry"));
                 }
             } catch(err) { 
                 console.error(err);
-                alert("❌ Network error while saving entry."); 
+                alert("❌ Network error while processing entry."); 
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "Issue Gate Pass & Log Visitor Entry";
@@ -274,7 +265,7 @@
                         <div class="space-y-0.5">
                             <p class="font-bold text-slate-800">${v.name} <span class="font-normal text-slate-500">(${v.mobile})</span></p>
                             <p class="text-slate-500">Host: <span class="font-medium text-slate-700">${v.to_meet}</span> (${v.dept})</p>
-                            <p class="text-slate-400 text-[11px]">In: ${v.in_time} ${v.vehicle !== '-' ? `| Vehicle: ${v.vehicle}` : ''}</p>
+                            <p class="text-slate-400 text-[11px]">Entered: ${v.in_time} ${v.vehicle !== '-' ? `| Vehicle: ${v.vehicle}` : ''}</p>
                         </div>
                         <button onclick="markExit('${v.mobile}')" class="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-bold px-3 py-1.5 rounded-lg transition text-xs whitespace-nowrap">
                             Mark OUT
@@ -298,40 +289,12 @@
                 if(resData.status === 'success') {
                     alert(`✅ Visitor marked OUT at ${resData.out_time}`);
                     loadActiveVisitors();
-                    renderCompletedVisitors();
+                    loadPastVisitors();
                 } else {
                     alert("❌ Exit Error: " + resData.message);
                 }
             } catch(e) { 
                 alert("❌ Network Error while marking exit."); 
-            }
-        }
-
-        async function renderCompletedVisitors() {
-            const container = document.getElementById('completedList');
-            if(!container) return;
-
-            try {
-                const res = await fetch('/api/get_completed_visitors');
-                const list = await res.json();
-
-                if(!list || !list.length) {
-                    container.innerHTML = `<p class="text-xs text-slate-400 py-3 text-center">No checked-out visitors found.</p>`;
-                    return;
-                }
-
-                container.innerHTML = list.map(v => `
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1">
-                        <div class="flex justify-between items-center">
-                            <p class="font-bold text-slate-800">${v.name} <span class="font-normal text-slate-500">(${v.mobile})</span></p>
-                            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold border border-emerald-200">OUT: ${v.out_time}</span>
-                        </div>
-                        <p class="text-slate-600">Host: <span class="font-medium text-slate-700">${v.to_meet}</span> (${v.dept})</p>
-                        <p class="text-slate-400 text-[11px]">In: ${v.in_time} ${v.date !== '-' ? `| Date: ${v.date}` : ''} ${v.vehicle !== '-' ? `| Vehicle: ${v.vehicle}` : ''}</p>
-                    </div>
-                `).join('');
-            } catch(e) {
-                container.innerHTML = `<p class="text-xs text-red-400 py-2">Error loading completed visitors.</p>`;
             }
         }
 
@@ -357,15 +320,47 @@
                     </div>
                 `).join('');
             } catch(e) {
-                container.innerHTML = `<p class="text-xs text-red-400 py-2">Error loading appointments.</p>`;
+                container.innerHTML = `<p class="text-xs text-red-400 py-2">Error loading pre-bookings.</p>`;
+            }
+        }
+
+
+        async function loadPastVisitors() {
+            const container = document.getElementById('pastList');
+            if(!container) return;
+            try {
+                const res = await fetch('/api/get_past_visitors');
+                const list = await res.json();
+                
+                if(!list || !list.length) {
+                    container.innerHTML = `<p class="text-xs text-slate-400 py-3 text-center">No checked-out visitors recorded yet.</p>`;
+                    return;
+                }
+                
+                container.innerHTML = list.slice(0, 30).map(v => `
+                    <div class="p-3 bg-red-50/50 border border-red-100 rounded-xl flex justify-between items-center text-xs">
+                        <div class="space-y-0.5">
+                            <p class="font-bold text-slate-800">${v.name} <span class="font-normal text-slate-500">(${v.mobile})</span></p>
+                            <p class="text-slate-500">Host: <span class="font-medium text-slate-700">${v.to_meet}</span> (${v.dept})</p>
+                            <p class="text-slate-500 text-[11px]">
+                                In: <b>${v.in_time}</b> | Out: <b class="text-red-700">${v.out_time}</b> ${v.date ? `(${v.date})` : ''}
+                            </p>
+                        </div>
+                        <div>
+                            ${v.photo ? `<a href="${v.photo}" target="_blank" class="text-[11px] bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-semibold px-2.5 py-1 rounded-md transition">Photo</a>` : '<span class="text-slate-400">-</span>'}
+                        </div>
+                    </div>
+                `).join('');
+            } catch(e) {
+                container.innerHTML = `<p class="text-xs text-red-400 py-2">Error loading checked-out history.</p>`;
             }
         }
 
         // Initialize Data on Load
         fetchNextId();
         loadActiveVisitors();
-        renderCompletedVisitors();
         loadPreBookings();
+        loadPastVisitors();
     </script>
 </body>
 </html>
